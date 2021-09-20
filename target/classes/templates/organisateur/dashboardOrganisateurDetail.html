@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+   <head>
+      <title>Détail des événements</title>
+      <!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+      <!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+	<link rel="icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
+
+      <!-- themify -->
+      <link rel="stylesheet" type="text/css" href="/assets/icon/themify-icons/themify-icons.css">
+
+      <!-- iconfont -->
+      <link rel="stylesheet" type="text/css" href="/assets/icon/icofont/css/icofont.css">
+
+      <!-- simple line icon -->
+      <link rel="stylesheet" type="text/css" href="/assets/icon/simple-line-icons/css/simple-line-icons.css">
+
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+      <!-- Chartlist chart css -->
+      <link rel="stylesheet" href="/assets/plugins/chartist/dist/chartist.css" type="text/css" media="all">
+
+      <!-- Weather css -->
+      <link href="/assets/css/svg-weather.css" rel="stylesheet">
+
+
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+      
+      <!--  MAP -->
+      <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
+	  <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+	  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/
+jquery.min.js"></script>
+	<style>
+		body { margin: 0; padding: 0; }
+		#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+	</style>
+
+
+
+
+      <!-- Responsive.css-->
+      <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+      <title>Organisateur - Liste des Evénements</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+
+   </head>
+
+
+
+   <body >
+ 
+   	<div class="sidebar-mini fixed" th:replace="DashboardLayout ::layout" ></div>
+          <!-- Tables start -->
+          <!-- Row start -->
+          <div class="content-wrapper" style="background-color: #DFF2FF; padding-bottom: 500px; margin-top: 0px">
+              <!-- Container-fluid starts -->
+              <!-- Main content starts -->
+              <div class="container-fluid">
+  
+                  <div class="container" style="margin-top: 5%; padding:30px;">
+                      
+                    <div class="principal" style="padding:30px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <h1 style="text-align: right;" th:text="${event.title}">Nom de l'événement</h1>
+                
+                                    <div class="CountDown" id="date" th:attr="data-date=${event.endDate}" style="text-align: right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container" style=" margin-top: 30px;">
+                            <div class="row">
+                                <div class="col-sm-4 text-center" style="margin-bottom: 30px;">
+                                    <br />
+                                    <br />
+                                    <img th:src="@{'/uploads/'+ ${event.picture}}" height="70%" width="80%" style="max-height:325px" alt="logo"/>
+                                </div>
+                                <div class="col-sm-8" style="padding: 0px">
+                                    <div style="padding:0px">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h6 th:text="${event.theme}">Thème</h6>
+                                                <h6 th:text="'Du ' + ${#dates.format(event.startDate, 'dd.MM.yyyy')} + ' au ' + ${#dates.format(event.endDate, 'dd.MM.yyyy')}">Date</h6>
+                                            </div>
+                
+                                        </div>
+                                     
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div style="margin-bottom: 15px;  background-color: rgb(253, 255, 253);">
+                                                    <p id="road" th:attr="data-road=${event.location.road}" th:text="${event.location.road}"></p>
+                                                    <p id="city" th:attr="data-city=${event.location.city}"  th:text="${event.location.zipCode} + '   ' +  ${event.location.city}">Adresse de la salle : </p>
+                                                </div>
+                                                <div style=" background-color: rgb(253, 255, 253);">
+                                                    <p  th:text="${event.descritpionDetails}">Description</p>
+                                                    <br>
+                                                </div>
+                                                <div style=" background-color: rgb(253, 255, 253);">
+                                                    <p  th:text="${event.infoPratique}">Accès / Infos pratiques</p>
+                                                    <br>
+                                                </div>
+                
+                                            </div>
+                                            <div  id="coord" class="col-sm-6" style=" background-color: rgb(253, 255, 253); padding: 0px" th:attr="data-long=${event.location.longitude}" >
+                                                 <div id="map" style="padding-right: 5px"></div>
+                                 			</div>
+                                            <h6 id="coord2" th:attr="data-lat=${event.location.latitude}">Nombre de participants : </h6>
+                                            <h6 th:text="${numberOfParticipants} + ' /  ' + ${event.maxAttendees} + ' participants'"></h6>
+                                            
+                                        </div>
+                
+                                        <br />
+                                        <br />
+                                        <br />
+                
+                                        <div class="col-sm-3" style="align-items: center; display: inline-block; text-align: center; ">
+                                            <a type="button" class="btn btn-success" th:href="@{/dashboardOrganisateur/modification/{id} (id=${event.IdEvent})}">Modifier</a>
+                                        </div>
+                
+                                        <div class="col-sm-4" style="display: inline-block; text-align: center;">
+                                            <a type="button" class="btn btn-danger" th:href="@{/delete/{id} (id=${event.IdEvent})}">Supprimer</a>
+                                        </div>
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Row end -->
+          <!-- Tables end -->
+  
+          
+          <!-- Container-fluid ends -->
+
+    
+      <!-- Required Jqurey -->
+      <script src="/assets/plugins/jquery/dist/jquery.min.js"></script>
+      <script src="/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+      <script src="/assets/plugins/tether/dist/js/tether.min.js"></script>
+  
+      <!-- Required Fremwork -->
+      <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+  
+      <!-- waves effects.js -->
+      <script src="/assets/plugins/Waves/waves.min.js"></script>
+  
+      <!-- Scrollbar JS-->
+      <script src="/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+      <script src="/assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+  
+      <!--classic JS-->
+      <script src="/assets/plugins/classie/classie.js"></script>
+  
+      <!-- notification -->
+      <script src="/assets/plugins/notification/js/bootstrap-growl.min.js"></script>
+  
+      <!-- custom js -->
+      <script type="/text/javascript" src="assets/js/main.min.js"></script>
+      <script type="/text/javascript" src="assets/pages/elements.js"></script>
+      <script src="/assets/js/menu.min.js"></script>
+
+	
+      
+    <script type="/text/javascript" src="assets/js/CountdownJSFile.js"></script>
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1IjoibWFya29tNyIsImEiOiJja3I5NmtibWMwamV1MnVwODczOW1vam44In0.Ypakc7J0ZCetAdwe9IWONw';
+		var longitude = document.getElementById('coord').getAttribute("data-long");
+		var latitude = document.getElementById('coord2').getAttribute("data-lat");
+		 
+		var map = new mapboxgl.Map({
+		container: 'map', // container ID
+		style: 'mapbox://styles/mapbox/streets-v11', // style URL
+		center: [latitude, longitude], // starting position ([lng, lat] for Paris)
+		zoom: 9 // starting zoom
+		});
+		
+		var marker1 = new mapboxgl.Marker()
+		.setLngLat([latitude, longitude])
+		.addTo(map);
+	</script>
+	
+	<script type="text/javascript">
+
+ /* Déclaration des variables globales */ 
+ var geocoder = new google.maps.Geocoder();
+ var addr, latitude1, longitude1; road; city;
+
+ /* Fonction chargée de géolocaliser l'adresse */ 
+ function geolocalise(){
+  /* Récupération du champ "adresse" */ 
+  road = document.getElementById('road').getAttribute("data-road");
+  city = document.getElementById('city').getAttribute("data-city");
+  addr =  road + " " + city;
+  /* Tentative de géocodage */ 
+  geocoder.geocode( { 'address': addr}, function(results, status) {
+   /* Si géolocalisation réussie */ 
+   if (status == google.maps.GeocoderStatus.OK) {
+    /* Récupération des coordonnées */ 
+    latitude1 = results[0].geometry.location.lat();
+    longitude1 = results[0].geometry.location.lng();
+   }
+ })
+};
+
+</script>
+	<!-- Required Jqurey -->
+	<script src="/assets/plugins/Jquery/dist/jquery.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/jquery-ui/jquery-ui.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/tether/dist/js/tether.min.js"
+		type="text/javascript"></script>
+
+	<!-- Required Fremwork -->
+	<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+
+	<!-- Scrollbar JS-->
+	<script src="/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"
+		type="text/javascript"></script>
+	<script
+		src="/assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js"
+		type="text/javascript"></script>
+
+	<!--classic JS-->
+	<script src="/assets/plugins/classie/classie.js" type="text/javascript"></script>
+
+	<!-- notification -->
+	<script src="/assets/plugins/notification/js/bootstrap-growl.min.js"
+		type="text/javascript"></script>
+
+	<!-- Sparkline charts -->
+	<script src="/assets/plugins/jquery-sparkline/dist/jquery.sparkline.js"
+		type="text/javascript"></script>
+
+	<!-- Counter js  -->
+	<script src="/assets/plugins/waypoints/jquery.waypoints.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/countdown/js/jquery.counterup.js"
+		type="text/javascript"></script>
+
+	<!-- Echart js -->
+	<script src="/assets/plugins/charts/echarts/js/echarts-all.js"
+		type="text/javascript"></script>
+
+	<script src="https://code.highcharts.com/highcharts.js"
+		type="text/javascript"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"
+		type="text/javascript"></script>
+	<script src="https://code.highcharts.com/highcharts-3d.js"
+		type="text/javascript"></script>
+
+	<!-- custom js -->
+	<script type="text/javascript" src="/assets/js/main.min.js"></script>
+	<script type="text/javascript" src="/assets/pages/dashboard.js"></script>
+	<script type="text/javascript" src="/assets/pages/elements.js"></script>
+	<script src="/assets/js/menu.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var $window = $(window);
+		var nav = $('.fixed-button');
+		$window.scroll(function() {
+			if ($window.scrollTop() >= 200) {
+				nav.addClass('active');
+			} else {
+				nav.removeClass('active');
+			}
+		});
+	</script>
+
+
+<script type="text/javascript" src="/js/countdown.js"></script>
+
+           
+  </body>
+
+</html>
+

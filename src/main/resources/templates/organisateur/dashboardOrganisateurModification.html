@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+	<link rel="icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+	<!-- themify -->
+<link rel="stylesheet" type="text/css"
+	href="/assets/icon/themify-icons/themify-icons.css">
+<!-- Required Fremwork -->
+<link rel="stylesheet" type="text/css" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+<!-- Chartlist chart css -->
+<link rel="stylesheet" href="/assets/plugins/chartist/dist/chartist.css" type="text/css" media="all">
+<!-- Weather css -->
+<link href="/assets/css/svg-weather.css" rel="stylesheet">
+<!-- Style.css -->
+<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+<!-- Responsive.css-->
+<link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+<!-- Google font-->
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700"
+	rel="stylesheet">
+	<!-- iconfont -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/icofont/css/icofont.css}">
+	<link rel="stylesheet" type="text/css" 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">>
+</head>
+<body>
+
+<div th:replace="DashboardLayout ::layout"></div>
+
+    <div class="content-wrapper" style="margin-top: 50px">
+        <div class="container" style="margin: 5%; padding:30px; background-color: #DFF2FF">
+            <div class="row">
+                <div class="col-12">
+                    <div class=" card-block bg-white">
+                        <form class="md-float-material" th:object="${event}" method="post" th:action="@{/dashboardOrganisateur/modification/{id} (id=${event.IdEvent})}">
+                            <div class="text-center">
+                                <img src="/assets/images/logoGoEvent.png" alt="logo">
+                            </div>
+                            <h3 class="text-center txt-primary" style="margin-top: 30px">Modifier un Evénement</h3>
+                            <br><br>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="md-input-wrapper">
+										<input type="text" class="md-form-control"
+											th:field="${event.title}"> 
+											<label for="title">Nom de l'événement</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="md-input-wrapper">
+										<input type="text" class="md-form-control" th:field="${event.theme}"> 
+										<label for="theme">Thème</label>
+									</div>
+								</div> 
+								<div class="col-md-6">
+									<div class="md-input-wrapper">
+										<input type="text" class="md-form-control"
+											th:field="${event.eventType.name}"> <label
+											for="eventType.name">Type d'événements</label>
+									</div> 
+								</div>
+								<div class="col-md-6">
+									<div class="md-input-wrapper">
+										<input type="text" class="md-form-control"
+											th:field="${event.maxAttendees}"> 
+										<label for="maxAttendees">Capacité maximale</label>
+									</div>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="files" class="col-form-label">Image</label> 
+									<input class="form-control" type="file" name="files" multiple>
+								</div>
+								<input type="hidden" th:field="*{picture}" th:attr="name='picture'" />
+								<div class="col-md-6">
+									<div class="md-input-wrapper">
+										<textarea class="input md-form-control" required="" rows="10" th:field="${event.descritpionDetails}" cols="10"></textarea>  
+										<label for="descritpionDetails">Description</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="md-input-wrapper">
+										<textarea class="input md-form-control" rows="10" cols="10" required="" th:field="${event.infoPratique}"></textarea> 
+										<label for="infoPratique">Infos Pratiques</label>
+									</div>
+								</div>
+								<div class="col-md-6" style="align-items: center;">
+									<div class="md-input-wrapper">
+										<input type="text" class="md-form-control" th:field="${event.tarif}"> 
+										<label for="tarif">Tarif</label>
+									</div>
+								</div>
+								<div class="col-md-6" style="align-items: center;" hidden="">
+									<div class="md-input-wrapper">
+										<input type="text" class="md-form-control" th:field="${event.organizer}" > 
+										<label for="event.organizer">Organisateur</label>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12" style="padding-top: 2%;">
+									<span class="text-muted">Localisation </span>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="md-input-wrapper">
+									<input type="text" class="md-form-control" th:field="${event.location.road}"> 
+									<label for="location.road">Adresse</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="md-input-wrapper">
+									<input type="text" class="md-form-control"
+										th:field="${event.location.city}"> <label
+										for="location.city">Ville</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="md-input-wrapper">
+									<input type="text" class="md-form-control"
+										th:field="${event.location.zipCode}"> <label
+										for="location.zipCode">Code Postal</label>
+								</div>
+							</div>
+
+							<div class="col-md-6" style="padding-top: 2%;">
+								<label class="form" for="startDate">Date de début</label>
+								<div class="md-input-wrapper">
+									<input th:field="${event.startDate}" type="date"
+										class="form-control" style="width: 30%;">
+								</div>
+							</div>
+							<div class="col-md-6" style="padding-top: 2%;">
+								<label class="form" for="startDate">Date de fin</label>
+								<div class="md-input-wrapper">
+									<input th:field="${event.endDate}" type="date"
+										class="form-control" style="width: 30%;">
+								</div> 
+							</div> 
+							<div class="col-md-6">
+								<div class="md-input-wrapper">
+									<input type="text" class="md-form-control" required=""
+										th:field="${event.location.longitude}"> <label
+										for="location.longitude">Longitude</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="md-input-wrapper">
+									<input type="text" class="md-form-control" required="" th:field="${event.location.latitude}"> 
+									<label for="location.latitude">Latitude</label>
+								</div>
+							</div>
+							
+							<div class="col-xs-10 offset-xs-5" style="padding-top:4%;">
+                                <button type="submit" class="btn btn-primary btn-md btn-block waves-effect waves-light m-b-20" style="width:20%">Modifier</button>
+                            </div>
+                          
+                        </form>
+                        <!-- end of form -->
+                    </div>
+                    <!-- end of login-card -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row-->
+        </div>
+    </div>
+    	<!-- Required Jqurey -->
+	<script src="/assets/plugins/Jquery/dist/jquery.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/jquery-ui/jquery-ui.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/tether/dist/js/tether.min.js"
+		type="text/javascript"></script>
+
+	<!-- Required Fremwork -->
+	<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+
+	<!-- Scrollbar JS-->
+	<script src="/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"
+		type="text/javascript"></script>
+	<script
+		src="/assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js"
+		type="text/javascript"></script>
+
+	<!--classic JS-->
+	<script src="/assets/plugins/classie/classie.js" type="text/javascript"></script>
+
+	<!-- notification -->
+	<script src="/assets/plugins/notification/js/bootstrap-growl.min.js"
+		type="text/javascript"></script>
+
+	<!-- Sparkline charts -->
+	<script src="/assets/plugins/jquery-sparkline/dist/jquery.sparkline.js"
+		type="text/javascript"></script>
+
+	<!-- Counter js  -->
+	<script src="/assets/plugins/waypoints/jquery.waypoints.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/countdown/js/jquery.counterup.js"
+		type="text/javascript"></script>
+
+	<!-- Echart js -->
+	<script src="/assets/plugins/charts/echarts/js/echarts-all.js"
+		type="text/javascript"></script>
+
+	<script src="https://code.highcharts.com/highcharts.js"
+		type="text/javascript"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"
+		type="text/javascript"></script>
+	<script src="https://code.highcharts.com/highcharts-3d.js"
+		type="text/javascript"></script>
+
+	<!-- custom js -->
+	<script type="text/javascript" src="/assets/js/main.min.js"></script>
+	<script type="text/javascript" src="/assets/pages/dashboard.js"></script>
+	<script type="text/javascript" src="/assets/pages/elements.js"></script>
+	<script src="/assets/js/menu.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var $window = $(window);
+		var nav = $('.fixed-button');
+		$window.scroll(function() {
+			if ($window.scrollTop() >= 200) {
+				nav.addClass('active');
+			} else {
+				nav.removeClass('active');
+			}
+		});
+	</script>
+    
+</body>
+</html>

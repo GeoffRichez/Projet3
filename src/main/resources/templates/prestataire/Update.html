@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Modifier une prestation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+<link rel="icon" th:href="@{/assets/images/favicon.ico}"
+	type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/themify-icons/themify-icons.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/icofont/css/icofont.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/simple-line-icons/css/simple-line-icons.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/plugins/chartist/dist/chartist.css}" type="text/css"
+	media="all">
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/responsive.css}">
+</head>
+
+<body>
+	<div th:replace="/prestataire/LayoutPrestation ::layoutPrestation"></div>
+	<div class="wrapper">
+		<div class="content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<main id="main" class="main-page">
+						<section id="section-form-style" class="wow fadeIn">
+							<div id="form-style" class="container" style=>
+								<div class="section-header text = center">
+									<h3>Modifier une prestation</h3>
+									<div class="card">
+										<div class="card-body">
+											<div class="col-md-8">
+												<form
+													th:action="@{/prestataire/update/{id}(id=${prestation.id})}"
+													th:object="${prestation}" method="post">
+
+													<input type="hidden" th:field="*{id}" />
+													<div class="row">
+														<div class="form-group col-md-6">
+															<label for="type" class="col-form-label">Type</label> <input
+																type="text" th:field="*{type}" class="form-control"
+																id="type" placeholder=""> <span
+																class="text-danger"></span>
+														</div>
+														<div class="form-group col-md-8">
+															<label for="price" class="col-form-label">Price</label> <input
+																type="number" th:field="*{price}" class="form-control"
+																id="price" placeholder=""> <span
+																class="text-danger"></span>
+														</div>
+														<!-- 
+														<div class="form-group col-md-8">
+															<label for="user" class="col-form-label">User2</label> <input
+																type="text" th:field="*{user}" class="form-control"
+																id="user" placeholder=""> <span
+																class="text-danger"></span>
+														</div>
+														-->
+
+
+														<div class="form-group col-md-8">
+															<button type="submit" class="btn btn-primary mt-4">Confirmer</button>
+
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+							<!-- JavaScript Libraries -->
+							<script th:src="@{/lib/jquery/jquery.min.js}"></script>
+							<script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+							<script th:src="@{/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+							<script th:src="@{/lib/easing/easing.min.js}"></script>
+							<script th:src="@{/lib/superfish/hoverIntent.js}"></script>
+							<script th:src="@{/lib/superfish/superfish.min.js}"></script>
+							<script th:src="@{/lib/wow/wow.min.js}"></script>
+							<script th:src="@{/lib/venobox/venobox.min.js}"></script>
+							<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+							<!-- Contact Form JavaScript File -->
+							<script th:src="@{/contactform/contactform.js}"></script>
+
+							<!-- Template Main Javascript File -->
+							<script th:src="@{/js/main.js}"></script>
+				</div>
+</body>
+
+</html>

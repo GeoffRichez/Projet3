@@ -1,0 +1,21 @@
+
+.compteurArebours{
+    animation-name: compteurAR;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+}
+
+
+@keyframes compteurAR {
+   
+33% {color: #4f1b74;}
+70% {color: #343453;}
+40% {color: #066106;}
+65.4% {color: #9c5610;}
+836% {color: #1f0333;}
+100% {color: #aa7272;}
+}
+
+
+
+

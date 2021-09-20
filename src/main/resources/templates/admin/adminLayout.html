@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>GoEvent</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	
+<!-- Favicon icon -->
+<link rel="shortcut icon" href="/assets/images/favicon.png"
+	type="image/x-icon">
+<link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+<!-- Google font-->
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700"
+	rel="stylesheet">
+
+<!-- themify -->
+<link rel="stylesheet" type="text/css"
+	href="/assets/icon/themify-icons/themify-icons.css">
+
+<!-- iconfont -->
+<link rel="stylesheet" type="text/css"
+	href="/assets/icon/icofont/css/icofont.css">
+
+<!-- simple line icon -->
+<link rel="stylesheet" type="text/css"
+	href="/assets/icon/simple-line-icons/css/simple-line-icons.css">
+
+<!-- Required Fremwork -->
+<link rel="stylesheet" type="text/css"
+	href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+
+<!-- Chartlist chart css -->
+<link rel="stylesheet" href="/assets/plugins/chartist/dist/chartist.css"
+	type="text/css" media="all">
+
+<!-- Weather css -->
+<link href="/assets/css/svg-weather.css" rel="stylesheet">
+
+
+<!-- Style.css -->
+<link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+
+<!-- Responsive.css-->
+<link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+
+<!-- admin.css-->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/css/adminGoEvent.css}">
+
+</head>
+
+
+<body>
+	<div class="sidebar-mini fixed" th:fragment="adminlayoutHome"
+		style="margin-bottom: 50px">
+		<div class="wrapper">
+			<!-- Navbar-->
+			
+			<header class="main-header-top hidden-print">
+				<nav class="navbar navbar-static-top" style="display: flex">
+					<!-- Sidebar toggle button-->
+					<a href="#!" data-toggle="offcanvas" class="sidebar-toggle"></a>
+					<div class="navbar-brand"
+						style="vertical-align: middle; margin: auto;">
+						<h4 style="margin: auto; text-align: center">Espace
+							Administrateur</h4>
+					</div>
+					<!-- Navbar Right Menu-->
+					<div class="navbar-custom-menu f-right">
+						<ul class="top-nav">
+							<!-- window screen -->
+							<li class="pc-rheader-submenu"><a href="#!"
+								class="drop icon-circle" onclick="javascript:toggleFullScreen()">
+									<i class="icon-size-fullscreen"></i>
+							</a></li>
+							<!-- User Menu-->
+							<li class="dropdown"><a href="#!" data-toggle="dropdown"
+								role="button" aria-haspopup="true" aria-expanded="false"
+								class="dropdown-toggle drop icon-circle drop-image"> <span>
+										<img class="img-circle " src="/img/portrait/Fitrianna.jpg"
+										style="width: 40px;" alt="User Image">
+								</span> <span>Fitriana <b>MANIK</b> <i
+										class=" icofont icofont-simple-down"></i></span>
+							</a>
+								<ul class="dropdown-menu settings-menu">
+									<li><a href="#"><i class="icon-user"></i> Mon Profil</a></li>
+							
+									<li class="p-0">
+										<div class="dropdown-divider m-0"></div>
+									</li>
+									<li><a th:href="@{/logout}"><i class="icon-logout"></i>
+											Se déconnecter</a></li>
+								</ul></li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+			
+			
+			
+			<!-- Side-Nav-->
+			<aside class="main-sidebar hidden-print ">
+				<section class="sidebar" id="sidebar-scroll">
+					<!-- Sidebar Menu-->
+					<a th:href="@{/index}" class="logo"><img
+						class="img-fluid able-logo" src="/assets/images/logoGoEvent.png"
+						alt="Theme-logo"
+						style="display: block; margin-left: auto; margin-right: auto; margin-top: 40px;"></a>
+					<ul class="sidebar-menu barre">
+
+						<li class="active treeview navbutton"><a
+							class="waves-effect waves-dark" th:href="@{/admin/accueil}">
+								<i class="ti-plus"></i><span> Dashboard</span>
+						</a></li>
+
+						<li class="active treeview navbutton"><a
+							class="waves-effect waves-dark" th:href="@{/admin/profil}"> <i
+								class="ti-id-badge"></i><span> Mon Profil</span>
+						</a></li>
+
+						<li class="active treeview navbutton"><a
+							class="waves-effect waves-dark" href="#"> <i
+								class="ti-archive"></i><span> Statistique</span>
+						</a></li>
+
+					</ul>
+				</section>
+			</aside>
+		</div>
+	</div>
+
+
+	<!-- Required Jqurey -->
+	<script src="/assets/plugins/Jquery/dist/jquery.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/jquery-ui/jquery-ui.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/tether/dist/js/tether.min.js"
+		type="text/javascript"></script>
+
+	<!-- Required Fremwork -->
+	<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+
+	<!-- Scrollbar JS-->
+	<script src="/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"
+		type="text/javascript"></script>
+	<script
+		src="/assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js"
+		type="text/javascript"></script>
+
+	<!--classic JS-->
+	<script src="/assets/plugins/classie/classie.js" type="text/javascript"></script>
+
+	<!-- notification -->
+	<script src="/assets/plugins/notification/js/bootstrap-growl.min.js"
+		type="text/javascript"></script>
+
+	<!-- Sparkline charts -->
+	<script src="/assets/plugins/jquery-sparkline/dist/jquery.sparkline.js"
+		type="text/javascript"></script>
+
+	<!-- Counter js  -->
+	<script src="/assets/plugins/waypoints/jquery.waypoints.min.js"
+		type="text/javascript"></script>
+	<script src="/assets/plugins/countdown/js/jquery.counterup.js"
+		type="text/javascript"></script>
+
+	<!-- Echart js -->
+	<script src="/assets/plugins/charts/echarts/js/echarts-all.js"
+		type="text/javascript"></script>
+
+	<script src="https://code.highcharts.com/highcharts.js"
+		type="text/javascript"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"
+		type="text/javascript"></script>
+	<script src="https://code.highcharts.com/highcharts-3d.js"
+		type="text/javascript"></script>
+
+	<!-- custom js -->
+	<script type="text/javascript" src="/assets/js/main.min.js"></script>
+	<script type="text/javascript" src="/assets/pages/dashboard.js"></script>
+	<script type="text/javascript" src="/assets/pages/elements.js"></script>
+	<script src="/assets/js/menu.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var $window = $(window);
+		var nav = $('.fixed-button');
+		$window.scroll(function() {
+			if ($window.scrollTop() >= 200) {
+				nav.addClass('active');
+			} else {
+				nav.removeClass('active');
+			}
+		});
+	</script>
+
+</body>
+
+</html>

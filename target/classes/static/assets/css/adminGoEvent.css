@@ -1,0 +1,49 @@
+ .dashboard-alluser {
+    background-color:#f9efe7;
+   color: #373a3c;
+    padding: 15px; }
+    
+    
+    .dashboard-users {
+    background-color:#ffffff;
+    color: #373a3c;
+    padding: 15px; }
+
+    .dashboard-allevents {
+    background-color:#f9efe7;
+    color: #373a3c;
+    padding: 15px; }
+         
+ 
+  .dashboard-events {
+    background-color:#ffffff;
+    color: #373a3c;
+    padding: 15px; }
+    
+
+.searchbar {
+    padding-left: -15px; }
+         
+.dropdown-menuGoEvent {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color:#11ffee00;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem
+}
+
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.btn { margin-bottom:10px; }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Espace prestataire</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+<link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+<link rel="icon" th:href="@{/assets/images/favicon.ico}"
+	type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/themify-icons/themify-icons.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/icofont/css/icofont.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/simple-line-icons/css/simple-line-icons.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/plugins/chartist/dist/chartist.css}" type="text/css"
+	media="all">
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/responsive.css}">
+
+</head>
+
+<body>
+	<div th:replace="/prestataire/LayoutPrestation ::layoutPrestation"></div>
+	<div class="wrapper">
+
+		<div class="content-wrapper">
+			<!-- Container-fluid starts -->
+			<!-- Main content starts -->
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="main-header">
+						<h4>
+							Liste des prestations <i class="icon-user text-warning-color"></i>
+						</h4>
+						<br> <br>
+						<h6>
+							Nombre :
+							<th:block th:text="${#lists.size(prestations)}"></th:block>
+						</h6>
+					</div>
+				</div>
+
+
+
+
+				<div class="col-xl-6 col-lg-12">
+					<div class="card">
+						<div class="card-block">
+							<div class="table-responsive">
+								<table class="table m-b-0 photo-table table-hover">
+									<thead>
+										<tr class="text-uppercase">
+											<th>Type</th>
+											<th>prix</th>
+											<th>actions</th>
+										</tr>
+
+									</thead>
+
+									<div class="row">
+									<tbody>
+										<tr th:each="prestation: ${prestations}">
+											<td th:text="${prestation.type}"></td>
+											<td th:text="${prestation.price}"></td>
+
+
+											<td><a th:href="@{editform/{id}(id=${prestation.Id})}"
+												class="ti-pencil-alt" style="color: #008000"></a> 
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												&nbsp;&nbsp;&nbsp;
+												<a th:href="@{delete/{id}(id=${prestation.Id})}"
+												class="ti-trash" style="color: #FF0000"></a></td>
+												
+											<!-- <li class="pc-rheader-submenu" > <i class="ti-trash"></i>> -->
+												
+												
+													
+
+											<!--
+												 <td><a th:href="@{/editform/{id}(id=${prestation.Id})}"
+													class="btn btn-yellow btn-sm" type="submit">Modifier</a> 
+												</td>
+													
+												<td><a th:href="@{/delete/{id}(id=${prestation.Id})}"
+													class="btn btn-red btn-sm" type="reset">Supprimer</a>
+												</td>
+												-->
+										</tr>
+
+
+									</tbody>
+
+								</table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-12">
+				<a th:href="@{/prestataire/pageaccueil}"
+					class="btn btn-outline-info btn-sm" aria-disabled="true">Retour
+					a l'accueil</a>
+			</div>
+			<!-- 2-1 block end -->
+		</div>
+		<!-- Main content ends -->
+		<!-- Container-fluid ends -->
+
+
+
+
+
+
+	</div>
+	</div>
+
+	<!-- Required Jqurey -->
+	<script src="assets/plugins/Jquery/dist/jquery.min.js"></script>
+	<script src="assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+	<script src="assets/plugins/tether/dist/js/tether.min.js"></script>
+
+	<!-- Required Fremwork -->
+	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- Scrollbar JS-->
+	<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+	<script src="assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js"></script>
+
+	<!--classic JS-->
+	<script src="assets/plugins/classie/classie.js"></script>
+
+	<!-- notification -->
+	<script src="assets/plugins/notification/js/bootstrap-growl.min.js"></script>
+
+	<!-- Sparkline charts -->
+	<script src="assets/plugins/jquery-sparkline/dist/jquery.sparkline.js"></script>
+
+	<!-- Counter js  -->
+	<script src="assets/plugins/waypoints/jquery.waypoints.min.js"></script>
+	<script src="assets/plugins/countdown/js/jquery.counterup.js"></script>
+
+	<!-- Echart js -->
+	<script src="assets/plugins/charts/echarts/js/echarts-all.js"></script>
+
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+	<!-- custom js -->
+	<script type="text/javascript" src="assets/js/main.min.js"></script>
+	<script type="text/javascript" src="assets/pages/dashboard.js"></script>
+	<script type="text/javascript" src="assets/pages/elements.js"></script>
+	<script src="assets/js/menu.min.js"></script>
+
+	<script type="/text/javascript" src="assets/js/CountdownJSFile.js"></script>
+
+
+
+</body>
+
+</html>

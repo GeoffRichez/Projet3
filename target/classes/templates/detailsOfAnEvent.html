@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<title>GoEvent</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
+
+<!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+	<link rel="icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+	rel="stylesheet">
+
+<!-- Bootstrap CSS File -->
+<link th:href="@{/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- Libraries CSS Files -->
+<link th:href="@{/lib/font-awesome/css/font-awesome.min.css}"
+	rel="stylesheet">
+<link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+<link th:href="@{/lib/venobox/venobox.css}" rel="stylesheet">
+<link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}"
+	rel="stylesheet">
+
+<!-- Main Stylesheet File -->
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+	<div th:replace="_layoutAcceuil ::header"></div>
+
+	<main id="main" class="main-page">
+
+
+		<section id="speakers-details" class="wow fadeIn">
+			<div class="container ">
+				<div class=" section-header">
+					<h2>Détails de l'événement à venir</h2>
+				</div>
+
+				<div class="container mb-5">
+					<div class="row">
+						<div class="col">
+							<img height="324" width="450"
+								th:src="@{'/uploads/'+ ${event.picture}}" />
+						</div>
+
+
+						<div class="col mb-5">
+							<!--  
+							<h3 th:text="${event.title}">Salon de la patisserie</h3>
+							<h5 th:text="${event.eventType.name}">Macaron</h5>
+							<h6
+								th:text="'Du ' + ${#dates.format(event.startDate, 'dd.MM.yyyy')} + ' au ' + ${#dates.format(event.endDate, 'dd.MM.yyyy')}">Du
+								2 mai 2021 au 10 mai 2021</h6>
+							<p class="mb-0 mt-3" th:text="${event.location.road}">3 rue
+								de la Gastronomie</p>
+							<p class="mb-3 mt-0" th:text="${event.location.city}">42300
+								Roanne</p>
+							<p th:text="${event.descritpion}">Les Génies de la Pâtisserie
+								: un espace dédié aux Pâtissiers en herbe qui auront la passion
+								d'apprendre et de transmettre leurs recettes de gâteaux et de
+								glaces aux autres enfants. Ces Master Class junior s'achèveront
+								par une dégustation des réalisations. De 8 à 14 ans. ​ Le Salon
+								de la Pâtisserie a pour objectif de mettre en lumière les
+								talents de nos artisans et les saveurs de nos terroirs. C’est
+								l’occasion de faire communier amateurs et professionnels, de
+								promouvoir le partage des savoirs et connaissances nouvelles.
+								Regarder, écouter, pâtisser mais aussi déguster dans un cadre
+								conviviale et riche d’enseignements.</p>
+							<div>
+								<input type="submit" value="Inscrivez-vous"
+									class="btn btn-primary m-2" th:href="@{/createAccount}">
+							</div>  -->
+							<form
+								th:action="@{/event/detailsOfAnEvent/{id} (id=${event.IdEvent})}"
+								method="POST">
+								<h3 th:text="${event.title}" style="margin-bottom: 0px"></h3>
+								<h6 class="CountDown" id="date" th:attr="data-date=${event.endDate}" style="text-align: left"></h6>
+								<h5 th:text="${event.theme}"></h5>
+								<!--<h5 th:text="${event.eventType.name}"></h5>   -->
+								<h6
+									th:text="'Du ' + ${#dates.format(event.startDate, 'dd.MM.yyyy')} + ' au ' + ${#dates.format(event.endDate, 'dd.MM.yyyy')}"></h6>
+								<p class="mb-0 mt-3" th:text="${event.location.road}"></p>
+								<p class="mb-3 mt-0" th:text="${event.location.zipCode} + '   ' + ${event.location.city}"></p>
+								<p th:text="${event.descritpionDetails}"></p>
+<br/>
+<br/>
+								<p class="mb-0"><strong>Services sur place :</strong></p>
+								<table class="mb-3">
+
+									<tr th:each="prestation: ${event.prestations}">
+										
+
+										<td th:text="${prestation.type}" /></td>
+									</tr>
+								</table>
+								
+								<br/>
+<br/><br/>
+
+								<a sec:authorize="isAuthenticated()">
+									<input type="submit" value="Inscrivez-vous"
+										class="btn btn-primary mb-2 mr-2">
+								</a>
+								<a th:if="${message}" th:text="${message}" class="text-primary" style="font-size: 15px;"></a>
+							</form>
+
+							
+							<div sec:authorize="isAnonymous()">
+								<a th:href="@{/login}" class="btn btn-primary mb-2">Se connecter pour s'inscrire</a>
+								
+							</div>
+							<a th:href="@{/allFuturEvents}"
+								class="btn btn-outline-info btn-sm align=center"
+								aria-disabled="true">Retourner à la liste des événements</a>
+
+							<!--  <a th:href="@{allFuturEvents.html">Retourner à la liste des
+								événements</a> -->
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="_layoutAcceuil ::footer"></div>
+
+	<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+	<!-- JavaScript Libraries -->
+	<script th:src="@{/lib/jquery/jquery.min.js}"></script>
+	<script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+	<script th:src="@{/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/lib/easing/easing.min.js}"></script>
+	<script th:src="@{/lib/superfish/hoverIntent.js}"></script>
+	<script th:src="@{/lib/superfish/superfish.min.js}"></script>
+	<script th:src="@{/lib/wow/wow.min.js}"></script>
+	<script th:src="@{/lib/venobox/venobox.min.js}"></script>
+	<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+	<!-- Contact Form JavaScript File -->
+	<script th:src="@{/contactform/contactform.js}"></script>
+
+	<!-- Template Main Javascript File -->
+	<script th:src="@{/js/main.js}"></script>
+	<script type="text/javascript" src="/js/countdown.js"></script>
+</body>
+
+</html>

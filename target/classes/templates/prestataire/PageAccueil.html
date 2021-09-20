@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<title>Espace prestataire</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+<link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+<link rel="icon" th:href="@{/assets/images/favicon.ico}"
+	type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/themify-icons/themify-icons.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/icofont/css/icofont.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/simple-line-icons/css/simple-line-icons.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/plugins/chartist/dist/chartist.css}" type="text/css"
+	media="all">
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/responsive.css}">
+
+</head>
+
+<body>
+	<div th:replace="/prestataire/LayoutPrestation ::layoutPrestation"></div>
+
+	<div class="wrapper" style="margin-left: 20px">
+
+		<div class="principal" style="margin: 5%; padding: 30px;">
+			<div class="container"></div>
+
+
+			<div class="row" style="margin-top: 10px;">
+				<div class="container">
+					<ul style="list-style: none;">
+
+						<li style="margin-top: 20px; margin-bottom: 20px;">
+							<div class="row"
+								style="align-items: center; background-color: rgb(253, 255, 253);">
+								<div class="col-sm-4">
+									<br /> <img
+										th:src="@{/assets/images/widget/prestation-de-service.png}"
+										class="img-fluid rounded-start"
+										style="max-width: 300px; max-height: 200px; text-align: center; margin: auto; display: flex">
+								</div>
+								<div class="col-sm-8">
+									<div class="card-body">
+										<br />
+										<h3 class="card-title">Service de prestataire</h3>
+
+										<br />
+
+										<p class="card-text">
+											<l class=""></l>
+											Le succès d’un événement est fait de détails les plus
+											infimes. C’est au sein de ces détails que réside la réussite.
+											Bénéficiez de tous les avantages d’un système éprouvé.
+											Déléguez pour mieux vous concentrer sue l’essentiel : la
+											satisfaction de vos clients. Notre large gamme d’offres vous
+											apportera le service adéquat pour mieux fidéliser vos
+											clients. Réservez en seulement en quelques clics.Les bureaux
+											et le matériel sont désinfectés avant chaque passage et nous
+											mettons également des masques et du gel hydro-alcoolique à
+											disposition de tous. <br /> <br /> Contactez <strong>info@goevent.com</strong>,
+											il saura vous conseiller pour émerger au mieux.
+										</p>
+
+										
+										<!--  <br/> <a th:href="@{/prestataire/add}" style="width: 180px"
+											class="btn btn-info btn-sm text-center">Ajouter une
+											prestation</a> -->
+
+
+										<div class="col-sm-5">
+											<br /> <img th:src="@{/assets/images/widget/deco.jpg}"
+												class="img-fluid rounded-start"
+												style="max-width: 300px; max-height: 200px; text-align: left; margin: auto; display: flex">
+											<div class="card_content">
+												<h3
+													class="card-title font-montserrat color-black fs-26 1h-low">
+													<a th:href="@{/assets/images/widget/deco.jpg}"
+														class="card_link no-deco">Espace & Décoration </a>
+												</h3>
+
+											</div>
+										</div>
+
+										<br />
+										<div class="col-sm-5">
+											<br /> <img th:src="@{/assets/images/widget/animation.jpg}"
+												class="img-fluid rounded-start"
+												style="max-width: 300px; max-height: 200px; text-align: right; margin: auto; display: flex">
+											<h3
+												class="card-title font-montserrat color-black fs-26 1h-low">
+												<a th:href="@{/assets/images/widget/animation.jpg}"
+													class="card_link no-deco">Animation </a>
+											</h3>
+
+										</div>
+
+										<div class="col-sm-5">
+											<br /> <img th:src="@{/assets/images/widget/repas.jpg}"
+												class="img-fluid rounded-start"
+												style="max-width: 300px; max-height: 200px; text-align: center; margin: auto; display: flex">
+											<div class="card_content">
+												<h3
+													class="card-title font-montserrat color-black fs-26 1h-low">
+													<a th:href="@{/assets/images/widget/repas.jpg}"
+														class="card_link no-deco">Repas </a>
+												</h3>
+
+											</div>
+										</div>
+
+
+										<div class="col-sm-5">
+											<br /> <img th:src="@{/assets/images/widget/logistique.jpg}"
+												class="img-fluid rounded-start"
+												style="max-width: 300px; max-height: 200px; text-align: right; margin: auto; display: flex">
+											<h3
+												class="card-title font-montserrat color-black fs-26 1h-low">
+												<a th:href="@{/assets/images/widget/logistique.jpg}"
+													class="card_link no-deco">Logistique </a>
+											</h3>
+
+										</div>
+
+									</div>
+
+									<!-- 		<div class="view-content">
+											
+												<div class="card">
+													<article class="card bg-white box-shadow">
+														<div class="card_image">
+															<article
+																class="media media--type-image media--view-mode-image-1-1-w100">
+																<div
+																	class="field field--name-field-madia-image field--type-image field--lable-visually_hidden">
+																	<div class="field__label visually-hidden"></div>
+																	<div class="field__items">
+																		<img th:src="@{/assets/images/widget/deco.jpg}"
+																			style="display: flex" width="200" height="200"
+																			alt="Photo déco rubrique Presta" typeof="foaf:Image"
+																			class="image-style-_-1-w200">
+																	</div>
+																</div>
+															</article>
+														</div>
+														<div class="card_content">
+															<h3
+																class="card-title font-montserrat color-black fs-26 1h-low">
+																<a th:href="@{/assets/images/widget/deco.jpg}"
+																	class="card_link no-deco">Deco </a>
+															</h3>
+															<div
+																class="card_subtitle font-montserrat color-pink fs-14">10
+																prestataires</div>
+														</div>
+													</article>
+
+												</div>
+
+											
+													<article class="card bg-white box-shadow">
+														<div class="card_image">
+															<article
+																class="media media--type-image media--view-mode-image-1-1-w100">
+																<div
+																	class="field field--name-field-madia-image field--type-image field--lable-visually_hidden">
+																	<div class="field__label visually-hidden"></div>
+																	<div class="field__items">
+																		<img th:src="@{/assets/images/widget/repas.jpg}"
+																			width="200" height="200"
+																			alt="Photo déco rubrique Presta" typeof="foaf:Image"
+																			class="image-style-_-1-w200">
+																	</div>
+																</div>
+															</article>
+														</div>
+														<div class="card_content">
+															<h3
+																class="card-title font-montserrat color-black fs-26 1h-low">
+																<a th:href="@{/assets/images/widget/deco.jpg}"
+																	class="card_link no-deco">Repas </a>
+															</h3>
+															<div
+																class="card_subtitle font-montserrat color-pink fs-14">12
+																prestataires</div>
+														</div>
+													</article>
+
+												
+
+												
+													<article class="card bg-white box-shadow">
+														<div class="card_image">
+															<article
+																class="media media--type-image media--view-mode-image-1-1-w100">
+																<div
+																	class="field field--name-field-madia-image field--type-image field--lable-visually_hidden">
+																	<div class="field__label visually-hidden"></div>
+																	<div class="field__items">
+																		<img th:src="@{/assets/images/widget/logistique.jpg}"
+																			width="200" height="200"
+																			alt="Photo déco rubrique Presta" typeof="foaf:Image"
+																			class="image-style-_-1-w200">
+																	</div>
+																</div>
+															</article>
+														</div>
+														<div class="card_content">
+															<h3
+																class="card-title font-montserrat color-black fs-26 1h-low">
+																<a th:href="@{/assets/images/widget/deco.jpg}"
+																	class="card_link no-deco">Logistique </a>
+															</h3>
+															<div
+																class="card_subtitle font-montserrat color-pink fs-14">9
+																prestataires</div>
+														</div>
+													</article>
+												
+											-->
+
+
+									<br />
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+
+
+			<!-- 	<div class="col-sm-8">
+				<div class="card-body">
+					<br />
+					<div class="col-sm-4">
+						<br /> <img th:src="@{/assets/images/widget/deco.jpg}"
+							class="img-fluid rounded-start"
+							style="max-width: 300px; max-height: 200px; text-align: center; margin: 100px; display: flex">
+						<br /> <br />
+						<p class="card-text">deco</p>
+					</div>
+				</div>
+				<br />
+			</div>  -->
+
+
+
+			<!-- Contact Form JavaScript File -->
+			<script th:src="@{/contactform/contactform.js}"></script>
+			<!-- Template Main Javascript File -->
+			<script th:src="@{/js/main.js}"></script>
+
+
+		</div>
+	</div>
+</body>
+</html>

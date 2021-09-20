@@ -1,0 +1,21 @@
+/*.row {
+    border: solid 1px black;
+}*/
+
+.col-sm-4 {
+    margin-bottom: 15px;
+}
+
+.col-sm-8 {
+    margin-bottom: 15px;
+}
+
+/*.col-sm-6 {
+    margin-bottom: 15px;
+}*/
+
+button{
+    position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

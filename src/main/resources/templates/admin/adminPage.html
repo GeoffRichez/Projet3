@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+   <!-- Favicon icon -->
+   <link rel="shortcut icon" th:href="@{/assets/images/favicon.png}" type="image/x-icon">
+   <link rel="icon" href="@{/assets/images/favicon.ico}" type="image/x-icon">
+
+   <!-- Google font-->
+   <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
+
+   <!-- themify -->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/icon/themify-icons/themify-icons.css}">
+
+   <!-- iconfont -->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/icon/icofont/css/icofont.css}">
+
+   <!-- simple line icon -->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/icon/simple-line-icons/css/simple-line-icons.css}">
+
+   <!-- Required Fremwork -->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}">
+
+   <!-- Chartlist chart css -->
+   <link rel="stylesheet" th:href="@{/assets/plugins/chartist/dist/chartist.css}" type="text/css" media="all">
+
+   <!-- Weather css -->
+   <link href="@{/assets/css/svg-weather.css}" rel="stylesheet">
+
+
+   <!-- Style.css -->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}">
+
+   <!-- Responsive.css-->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/css/responsive.css}">
+
+   <!-- admin.css-->
+   <link rel="stylesheet" type="text/css" th:href="@{/assets/css/adminGoEvent.css}">
+
+
+</head>
+
+
+
+<body>
+<div class="sidebar-mini fixed" th:replace="admin/adminLayout ::adminlayoutHome"></div>
+  
+  
+  
+      <div class="content-wrapper">
+         <!-- Container-fluid starts -->
+         <!-- Main content starts -->
+         <div class="container-fluid">
+            <div class="row">
+               <div class="main-header">
+                  <h4>Dashboard</h4>
+               </div>
+            </div>
+            <!-- 4-blocks row start -->
+            
+            
+            <div class="row dashboard-header">
+            
+             <div class="col-lg-6 col-md-6">
+                  <div class="card dashboard-alluser">
+                     <span>Total - Utilisateurs</span>
+                     <h2 th:block th:text="${#lists.size(getAllUser)}"></th:block></h2>
+                     <a th:href="@{/admin/list}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="icon-user text-warning-color"></i>
+                     </div>
+                  </div>
+               </div>
+            
+               <div class="col-lg-6 col-md-6">
+                  <div class="card dashboard-allevents">
+                     <span>Total - Evénements</span>
+                     <h2 th:block th:text="${#lists.size(listEvents)}"></th:block></h2>
+<!--                      <a th:href="@{/allFuturEvents}" class="badge badge-info">voir la liste</a> -->
+                     <a th:href="@{/admin/list/event}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-list text-warning-color"></i>
+                     </div>
+                  </div>
+               </div>
+               
+               
+                <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-users">
+                     <span>Participants</span>
+                     <h2 th:block th:text="${listParticipant}"></th:block></h2>
+                     <a th:href="@{/admin/list/participant}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-rocket text-danger-color"></i>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-users">
+                     <span>Organisateurs</span>
+                       <h2 th:block th:text="${listOrganisateur}"></th:block></h2>
+                     <a th:href="@{/admin/list/organisateur}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box ">
+                        <i class="ti-gift text-primary-color"></i>
+                        
+                     </div>
+                  </div>
+               </div>
+               
+                <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-events">
+                     <span>Evénements à venir</span>
+                     <h2 th:block th:text="${#lists.size(listFutureEvents)}"></th:block></h2>
+                     <a th:href="@{/admin/list/event/future}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-list text-warning-color"></i>
+                  
+                     </div>
+                    
+                  </div>
+               </div>
+               
+               <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-events">
+                     <span>Evénements passés</span>
+                     <h2 th:block th:text="${#lists.size(listPastEvents)}"></th:block></h2>
+                     <a th:href="@{/admin/list/event/past}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-list text-warning-color"></i>
+                  
+                     </div>
+                    
+                  </div>
+               </div>
+               
+               
+               <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-users">
+                     <span>Prestataires</span>
+                       <h2 th:block th:text="${listPrestataire}"></th:block></h2>
+                     <a th:href="@{/admin/list/prestataire}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-direction-alt text-success-color"></i>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-users">
+                     <span>Administrateurs</span>
+                      <h2 th:block th:text="${listAdmin}"></th:block></h2>
+                     <a th:href="@{/admin/list/admin}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-direction-alt text-success-color"></i>
+                     </div>
+                  </div>
+               </div>
+               
+               
+              
+               
+               <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-events ">
+                     <span>Types</span>
+                     <h2 th:block th:text="${#lists.size(listEventTypes)}"></th:block></h2>
+                     <a th:href="@{/admin/list/eventType}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-list text-warning-color"></i>
+                  
+                     </div>
+                    
+                  </div>
+               </div>
+               
+               <div class="col-lg-3 col-md-3">
+                  <div class="card dashboard-events ">
+                     <span>Lieux </span>
+                     <h2 th:block th:text="${#lists.size(listAdress)}"></th:block></h2>
+                     <a th:href="@{/admin/list/location}" class="badge badge-info">voir la liste</a>
+                     <div class="side-box">
+                        <i class="ti-list text-warning-color"></i>
+                  
+                     </div>
+                    
+                  </div>
+               </div>
+              
+            </div>
+            <!-- 4-blocks row end -->
+
+            <!-- 2-1 block start -->
+
+            
+         
+         <!-- Main content ends -->
+         <!-- Container-fluid ends -->
+
+      </div>
+   </div>
+
+
+
+   <!-- Required Jqurey -->
+   <script th:src="@{/assets/plugins/Jquery/dist/jquery.min.js}"></script>
+   <script th:src="@{/assets/plugins/jquery-ui/jquery-ui.min.js}"></script>
+   <script th:src="@{/assets/plugins/tether/dist/js/tether.min.js}"></script>
+
+   <!-- Required Fremwork -->
+   <script th:src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
+
+   <!-- Scrollbar JS-->
+   <script th:src="@{/assets/plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
+   <script th:src="@{/assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js}"></script>
+
+   <!--classic JS-->
+   <script th:src="@{/assets/plugins/classie/classie.js}"></script>
+
+   <!-- notification -->
+   <script th:src="@{/assets/plugins/notification/js/bootstrap-growl.min.js}"></script>
+
+   <!-- Sparkline charts -->
+   <script th:src="@{/assets/plugins/jquery-sparkline/dist/jquery.sparkline.js}"></script>
+
+   <!-- Counter js  -->
+   <script th:src="@{/assets/plugins/waypoints/jquery.waypoints.min.js}"></script>
+   <script th:src="@{/assets/plugins/countdown/js/jquery.counterup.js}"></script>
+
+   <!-- Echart js -->
+   <script th:src="@{/assets/plugins/charts/echarts/js/echarts-all.js}"></script>
+
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+   <script src="https://code.highcharts.com/modules/exporting.js"></script>
+   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+   <!-- custom js -->
+   <script type="text/javascript" th:src="@{/assets/js/main.min.js}"></script>
+   <script type="text/javascript" th:src="@{/assets/pages/dashboard.js}"></script>
+   <script type="text/javascript" th:src="@{/assets/pages/elements.js}"></script>
+   <script th:src="@{assets/js/menu.min.js}"></script>
+  
+  <script>
+     function supprimer(){
+        alert ("Voulez vous supprimer cet element");
+     }
+  </script>
+  
+  
+  
+  <script>
+      var $window = $(window);
+      var nav = $('.fixed-button');
+      $window.scroll(function () {
+         if ($window.scrollTop() >= 200) {
+            nav.addClass('active');
+         }
+         else {
+            nav.removeClass('active');
+         }
+      });
+   </script>
+
+</body>
+
+</html>

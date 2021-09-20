@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<title>GoEvent</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="" name="keywords">
+<meta content="" name="description">
+
+<!-- Favicons -->
+    <link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+	<link rel="icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+
+<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+	rel="stylesheet">
+
+<!-- Bootstrap CSS File -->
+<link th:href="@{/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+<!-- Libraries CSS Files -->
+<link th:href="@{/lib/font-awesome/css/font-awesome.min.css}"
+	rel="stylesheet">
+<link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+<link th:href="@{/lib/venobox/venobox.css}" rel="stylesheet">
+<link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}"
+	rel="stylesheet">
+
+<!-- Main Stylesheet File -->
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/my-style.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<div th:replace="_layoutAcceuil ::header"></div>
+
+
+
+	<main id="main" class="main-page">
+
+		<section id="section-form-style" class="wow fadeIn">
+			<div id="form-style" class="container">
+				<div class="section-header">
+					<h2>Créer un compte</h2>
+				</div>
+
+
+
+
+				<div class="row">
+					<div class="col-md-4"></div>
+					<div class="col-md-4">
+						<form th:action="@{/createAccount}" th:object="${user}"
+							method="post">
+							<div class="form-group">
+								<label for="firstName">Prénom</label> <input type="text"
+									th:field="*{firstName}" class="form-control" id="fistName"
+									aria-describedby="firstNameHelp" placeholder="Prénom">
+							</div>
+							<div class="form-group">
+								<label for="lastName">Nom</label> <input type="text"
+									th:field="*{lastName}" class="form-control" id="lastName"
+									aria-describedby="nameHelp" placeholder="Nom">
+							</div>
+							<div class="form-group">
+								<label for="Email">Adresse email*</label> <input type="email"
+									th:field="*{email}" class="form-control" id="Email"
+									aria-describedby="emailHelp" placeholder="Email" required>
+							</div>
+							<div class="form-group">
+								<label for="birthDate">Date de naissance</label> <input
+									type="date" th:field="*{birthday}" class="form-control"
+									id="birthDate" aria-describedby="birthdateHelp" placeholder="Date">
+							</div>
+							<div class="form-group">
+								<label for="phoneNumber">Téléphone</label> <input type="text"
+									th:field="*{phoneNumber}" class="form-control" id="phoneNumber"
+									aria-describedby="phonelHelp" placeholder="Téléphone" pattern="[0-9]{10}">
+							</div>
+							<!--  
+							<div class="form-group">
+								<label for="urlPhoto">Photo</label> <input type="text"
+									th:field="*{picture}" class="form-control" id="urlPhoto"
+									aria-describedby="pictureHelp" placeholder="https://example.com">
+							</div> -->
+									<div class="form-group">
+									<label for="files" class="col-form-label">Photo</label> <input
+										class="form-control" type="file" name="files" multiple>
+								</div>
+							<!--
+							<div class="form-group mb-0">
+								<label for="confirmPassword">Choissisez vos rôles : </label>
+							</div>
+								
+					  		<div class="checkbox" th:each="rolerole : ${rolesroles}">
+								<label> <input th:value="${rolerole.id}"
+									th:field="${user.roles}" type="checkbox" /> <span
+									th:text="${rolerole.role}" th:remove="tag"> </span>
+								</label>
+
+							</div>  
+						
+							<select th:field="${user.roles}" class="form-select" aria-label="Default select example">
+								<option>Choissisez votre rôles : </option>
+								<option th:each="rolerole : ${rolesroles}" th:value="${user.roles}"
+								th:text="${rolerole.role}" />
+							</select>
+
+						 -->
+							<div class="form-group">
+							<select th:field="${user.roles}" class="form-control" aria-label="Default select example" >
+								<option th:value="0">Choisissez votre rôle : </option>
+								<option th:each="rolerole : ${rolesroles}" th:value="${rolerole.id}"
+								 th:text="${rolerole.role}" />
+							</select>
+								</div> 
+
+							<div class="form-group">
+								<label for="Password">Mot de passe*</label> <input
+									type="password" class="form-control" id="password"
+									placeholder="Mot de passe" required>
+							</div>
+							<div class="form-group">
+								<label for="confirmPassword">Confimer mot de passe*</label> <input
+									type="password" th:field="*{password}" class="form-control"
+									id="confirmPassword" placeholder="Mot de passe" required oninput="checkPasswordMatch(this);">
+							</div>
+
+							<button type="submit" class="btn btn-primary mt-4">Valider</button>
+							<br>
+							<p th:utext="${message}" class="text-danger"></p>
+							<br>
+						</form>
+					</div>
+				</div>
+			</div>
+
+		</section>
+	</main>
+
+
+
+	<div th:replace="_layoutAcceuil ::footer"></div>
+
+
+
+	<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+	<!-- JavaScript Libraries -->
+	<script th:src="@{/lib/jquery/jquery.min.js}"></script>
+	<script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+	<script th:src="@{/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/lib/easing/easing.min.js}"></script>
+	<script th:src="@{/lib/superfish/hoverIntent.js}"></script>
+	<script th:src="@{/lib/superfish/superfish.min.js}"></script>
+	<script th:src="@{/lib/wow/wow.min.js}"></script>
+	<script th:src="@{/lib/venobox/venobox.min.js}"></script>
+	<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+	<!-- Contact Form JavaScript File -->
+	<script th:src="@{/contactform/contactform.js}"></script>
+
+	<!-- Template Main Javascript File -->
+	<script th:src="@{/js/main.js}"></script>
+	 <script>
+	   function checkPasswordMatch(fieldConfirmPassword) {
+		    if (fieldConfirmPassword.value != $("#password").val()) {
+		        fieldConfirmPassword.setCustomValidity("Mots de passe non identiques");
+		    } else {
+		        fieldConfirmPassword.setCustomValidity("");
+		    }
+		}
+   </script>
+</body>
+
+</html>

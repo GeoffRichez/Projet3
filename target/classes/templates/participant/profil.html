@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Mon profil</title>
+<!-- HTML5 Shim and Respond.js IE9 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+     <![endif]-->
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<!-- Favicon icon -->
+<<link rel="shortcut icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+<link rel="icon" th:href="@{/assets/images/logoGoEvent.png}"
+	type="image/x-icon">
+
+<!-- Google font-->
+<link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700"
+	rel="stylesheet">
+
+<!-- themify -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/themify-icons/themify-icons.css}">
+
+<!-- iconfont -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/icofont/css/icofont.css}">
+
+<!-- simple line icon -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/icon/simple-line-icons/css/simple-line-icons.css}">
+
+<!-- Required Fremwork -->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/plugins/bootstrap/css/bootstrap.min.css}">
+
+<!-- Chartlist chart css -->
+<link rel="stylesheet"
+	th:href="@{/assets/plugins/chartist/dist/chartist.css}" type="text/css"
+	media="all">
+
+<!-- Weather css -->
+<link th:href="@{/assets/css/svg-weather.css}" rel="stylesheet">
+
+<!-- Style.css -->
+<link rel="stylesheet" type="text/css" th:href="@{/assets/css/main.css}">
+
+<!-- Responsive.css-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/responsive.css}">
+
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+
+
+
+<body style="background-color:#d2e9e1; margin-top:0px;">
+
+	<div  class="sidebar-mini fixed" th:replace="participant/DashboardLayoutParticipant ::layoutParticipant">	</div>
+
+	<!-- Tables start -->
+	<!-- Row start -->
+	<div class="content-wrapper" style="background-color:#d2e9e1; margin-top:0px;">
+		<!-- Container-fluid starts -->
+		<!-- Main content starts -->
+		<section class="py-5 my-5">
+			<div class="container">
+				<h1 class="mb-5">Mon profil</h1>
+				<div class="bg-white shadow rounded-lg d-block d-sm-flex">
+					<div class="profile-tab-nav border-right">
+
+
+							<div class="p-4">
+							
+				<!-- 		
+							
+								<br /> <br /> <br /> <br />
+								<div class="img-circle text-center mb-3">
+							 			<img th:src="@{/assets/images/user2.jpg}" alt="Image"
+					
+									class="shadow"> <input type="text" th:field="*{picture}"
+									class="form-control" id="urlPhoto" aria-describedby="emailHelp"
+									placeholder="https://example.com"> 
+					 
+									<label for="urlPhoto">Modifier la photo</label>
+
+								</div>
+				-->			
+							 <div class="col-sm-4">
+							 <br/>
+							 <br/>
+							 <br/>
+                                    <img th:src="@{/assets/images/portrait1.jpg}"
+                                        class="img-fluid rounded-start" alt="photo"
+                                        style="max-width: 250px; max-height:250px; text-align:center; margin:auto; display:flex">
+                                </div>	
+								
+							</div>
+ 
+ 
+					</div>  
+
+						<form th:action="@{/participant/profil}" th:object="${user}" method="POST">
+							<input type="hidden" th:field="*{id}" th:attr="name='Id'" />
+							<input type="hidden" th:field="*{password}" th:attr="name='password'" />
+							<input type="hidden" th:field="*{picture}" th:attr="name='picture'" />
+							<input type="hidden" th:field="*{active}" th:attr="name='active'" />
+
+							<div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+								<div id="account" role="tabpanel" aria-labelledby="account-tab">
+
+									<h3 class="mb-4">Mes informations</h3>
+
+
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="firstName">Prénom</label> 
+												<input type="text" th:field="*{firstName}" class="form-control" id="firstName"
+													aria-describedby="emailHelp" placeholder="Prénom">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="lastName">Nom</label> 
+												<input type="text" th:field="*{lastName}" class="form-control" id="laststName"
+													aria-describedby="emailHelp" placeholder="Nom">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="Email">Adresse email</label> 
+												<input type="email" th:field="*{email}" id="email" class="form-control"
+													aria-describedby="emailHelp" placeholder="Email" required>
+											</div>
+										</div>
+
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="birthDate">Date de naissance</label> 
+												<input type="date" th:field="*{birthday}" class="form-control"
+													id="birthDate" aria-describedby="emailHelp"
+													placeholder="Date">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="phoneNumber">Téléphone</label> 
+												<input type="text" th:field="*{phoneNumber}" class="form-control"
+													id="phoneNumber" aria-describedby="emailHelp"
+													placeholder="Téléphone">
+											</div>
+										</div>
+									</div>
+									<div>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<br /> <input class="btn btn-primary" value="Valider" type="submit" />	
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;								
+											   <input class="btn btn-danger"  value="Annuler" type="reset"/>
+									</div>
+									<div>
+									<br>
+               						 <p th:utext="${message}"class="text-primary" style="font-size: 15px;"></p>
+              						  <br>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+		</section>
+	</div>
+	<!-- Row end -->
+	<!-- Tables end -->
+
+
+
+	<!-- Required Jqurey -->
+	<script src="@{/assets/plugins/jquery/dist/jquery.min.js}"></script>
+	<script src="@{/assets/plugins/jquery-ui/jquery-ui.min.js}"></script>
+	<script src="@{/assets/plugins/tether/dist/js/tether.min.js}"></script>
+
+	<!-- Required Fremwork -->
+	<script src="@{/assets/plugins/bootstrap/js/bootstrap.min.js}"></script>
+
+	<!-- waves effects.js -->
+	<script src="@{/assets/plugins/Waves/waves.min.js}"></script>
+
+	<!-- Scrollbar JS-->
+	<script src="@{/assets/plugins/jquery-slimscroll/jquery.slimscroll.js}"></script>
+	<script
+		src="@{/assets/plugins/jquery.nicescroll/jquery.nicescroll.min.js}"></script>
+
+	<!--classic JS-->
+	<script src="@{/assets/plugins/classie/classie.js}"></script>
+
+	<!-- notification -->
+	<script src="@{/assets/plugins/notification/js/bootstrap-growl.min.js}"></script>
+
+	<!-- custom js -->
+	<script type="text/javascript" src="@{/assets/js/main.min.js}"></script>
+	<script type="text/javascript" src="@{/assets/pages/elements.js}"></script>
+	<script src="@{/assets/js/menu.min.js}"></script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+	<script th:src="@{/contactform/contactform.js}"></script>
+
+	<!-- Template Main JavaScript File -->
+	<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>
